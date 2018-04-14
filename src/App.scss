@@ -1,3 +1,11 @@
+@import '~antd/lib/layout/style/index.css';
+@import '~antd/lib/grid/style/index.css';
+
+.container {
+  width: 1170px;
+  margin: 0 auto;
+}
+
 .main-headline {
   font-size: 48px;
   text-align: center;
