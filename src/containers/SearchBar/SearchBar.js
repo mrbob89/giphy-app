@@ -12,6 +12,7 @@ const { Option } = SelectAntd;
 class SearchBar extends Component {
   static defaultProps = {
     currentSearchedQuery: '',
+    loadingItems: false,
     matchedOptions: [],
     changeSearchedGifName: () => false,
     getNewGifs: () => false
@@ -27,20 +28,16 @@ class SearchBar extends Component {
     const { getNewGifs } = this.props;
 
     getNewGifs();
-  }
+  };
 
   renderMatchedOptions = () => {
     const { matchedOptions } = this.props;
 
-    if (matchedOptions.length !== 0) {
-      return matchedOptions.map(item => <Option key={item}>{item}</Option>);
-    }
-
-    return matchedOptions;
+    return matchedOptions.map(item => <Option key={item}>{item}</Option>);
   };
 
   render() {
-    const { currentSearchedQuery } = this.props;
+    const { currentSearchedQuery, loadingItems } = this.props;
 
     return (
       <Row gutter={20} className="search-bar">
@@ -50,13 +47,21 @@ class SearchBar extends Component {
             size="large"
             placeholder="Please enter gif name"
             value={currentSearchedQuery}
+            onInputKeyDown={e =>
+              e.keyCode === 13 && this.handleSearchNewItems()
+            }
             onChange={this.handleChangeSearchedQuery}
           >
             {this.renderMatchedOptions()}
           </Select>
         </Col>
         <Col span={4}>
-          <Button type="primary" size="large" onClick={this.handleSearchNewItems}>
+          <Button
+            type="primary"
+            size="large"
+            loading={loadingItems}
+            onClick={this.handleSearchNewItems}
+          >
             Search
           </Button>
         </Col>

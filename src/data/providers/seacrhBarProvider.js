@@ -5,11 +5,13 @@ import { changeSearchedGifName, getNewGifs } from '../actionCreators/searchBarAc
 
 const currentSearchedQuerySelector = ({ currentSearchedQuery }) =>
   currentSearchedQuery;
+const loadingItemsSelector = ({ loadingItems }) => loadingItems;
 const matchedOptionsSelector = ({ previouslySearchedQueries }) =>
-  previouslySearchedQueries;
+  previouslySearchedQueries.filter((item, index) => index < 5);
 
 const select = createStructuredSelector({
   currentSearchedQuery: currentSearchedQuerySelector,
+  loadingItems: loadingItemsSelector,
   matchedOptions: matchedOptionsSelector
 });
 
