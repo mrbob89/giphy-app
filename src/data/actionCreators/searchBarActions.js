@@ -42,7 +42,10 @@ export const changeSearchedGifName = query => ({
 export const getNewGifs = () => (dispatch, getState) => {
   const { currentSearchedQuery, previouslySearchedQueries } = getState();
 
-  if (currentSearchedQuery && currentSearchedQuery !== previouslySearchedQueries[0]) {
+  if (
+    currentSearchedQuery &&
+    currentSearchedQuery !== previouslySearchedQueries[0]
+  ) {
     dispatch(getDataFromApi());
     dispatch(updateSearchedQueries());
   } else if (!currentSearchedQuery) {

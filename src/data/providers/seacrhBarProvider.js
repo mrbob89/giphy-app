@@ -1,7 +1,10 @@
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 
-import { changeSearchedGifName, getNewGifs } from '../actionCreators/searchBarActions';
+import {
+  changeSearchedGifName,
+  getNewGifs
+} from '../actionCreators/searchBarActions';
 
 const currentSearchedQuerySelector = ({ currentSearchedQuery }) =>
   currentSearchedQuery;
